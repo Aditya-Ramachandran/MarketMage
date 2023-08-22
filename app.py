@@ -17,7 +17,19 @@ st.sidebar.title('Navigator')
 user_option = st.sidebar.selectbox('Choose One', ('About', 'Analytics'))
 
 if user_option == 'About':
-    st.write('About')
+
+    st.header('About')
+    st.write('Meet MarketMage: Your personal supermarket sales analyzer. This mini project employs Python and SQL to offer a real-time snapshot of sales trends, profit margins, and regional patterns across a variety of store locations. The app\'s intuitive interface transforms raw data into actionable insights, making it a valuable tool for swift decision-making. Dive into the world of business analysis with MarketMage, where data-driven insights are just a click away.')
+
+    st.write('MarketMage is a small yet impactful project that fuses Python and SQL to fetch and process real-time data from different supermarket branches. This combination of technical tools allows MarketMage to uncover valuable insights from the data, revealing sales trends and profit margins. The user-friendly interface makes it easy to explore these insights, with the added visual flair provided by Plotly\'s visualizations.')
+    st.write('Looking ahead, MarketMage could even evolve to include predictive features for smarter restocking decisions, showcasing its potential to provide practical support beyond its current scope.')
+
+    st.subheader('Data Flow and Visualization')
+    st.write('- MarketMage\'s data flow is designed for efficiency, beginning with SQL queries to fetch sales data from diverse store locations stored in a MySQL database.')
+    st.write('- Python takes charge of data manipulation and processing, transforming raw information into valuable insights.')
+    st.write('- The processed data is dynamically visualized using Plotly, creating interactive charts that showcase sales trends, profit margins, and regional patterns.')
+    st.write('- This seamless interface empowers users to effortlessly explore and glean insights from the data, enhancing decision-making for supermarket operations.')
+
 else:
     analysis_option = st.sidebar.radio('Choose Type of Analysis', ('Sales Analysis', 'Profit and Discount Analysis', 'Segment and Mode Analysis'))
 
