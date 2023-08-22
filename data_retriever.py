@@ -144,4 +144,54 @@ class DB:
         data = data.rename(columns={0:'Sub-Category', 1:'Avg Discount'})
         return data
     
-    
+    def get_segment_highest_avg_quantity_sold(self):
+        self.mycursor.execute("USE store")
+        self.mycursor.execute("""
+            SELECT Segment, AVG(Quantity)
+            FROM store_data
+            GROUP BY Segment
+            ORDER BY AVG(Quantity) DESC;
+        """)
+        data = self.mycursor.fetchall()
+        data = pd.DataFrame(data)
+        data = data.rename(columns={0:'Segment', 1:'Avg Quantity'})
+        return data
+
+    def get_top_5_common_ship_modes(self):
+        self.mycursor.execute('USE store')
+        self.mycursor.execute("""
+            SELECT `Ship Mode`, COUNT(*)
+            FROM store_data
+            GROUP BY `Ship Mode`
+            ORDER BY COUNT(*) DESC LIMIT 5;
+        """)
+        data = self.mycursor.fetchall()
+        data = pd.DataFrame(data)
+        data = data.rename(columns={0:'Ship Mode', 1:'Count'})
+        return data
+
+    def get_segment_lowest_avg_discount(self):
+        self.mycursor.execute("USE store")
+        self.mycursor.execute("""
+            SELECT Segment, AVG(Discount)
+            FROM store_data
+            GROUP BY Segment 
+            ORDER BY AVG(Discount) ASC;
+        """)
+        data = self.mycursor.fetchall()
+        data = pd.DataFrame(data)
+        data = data.rename(columns={0:'Segment', 1:'Avg Discount'})
+        return data
+
+    def get_avg_sales_per_quantity_per_segment(self):
+        self.mycursor.execute("USE store")
+        self.mycursor.execute("""
+            SELECT Segment, AVG(Sales/Quantity)
+            FROM store_data
+            GROUP BY Segment
+            ORDER BY AVG(Sales/Quantity) DESC;
+        """)
+        data = self.mycursor.fetchall()
+        data = pd.DataFrame(data)
+        data = data.rename(columns={0:'Segment', 1:"Sales"})
+        return data

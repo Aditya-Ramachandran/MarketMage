@@ -19,7 +19,7 @@ user_option = st.sidebar.selectbox('Choose One', ('About', 'Analytics'))
 if user_option == 'About':
     st.write('About')
 else:
-    analysis_option = st.sidebar.radio('Choose Type of Analysis', ('Sales Analysis', 'Profit and Discount Analysis', 'Segment and Mode Analysis','Yearly Analysis'))
+    analysis_option = st.sidebar.radio('Choose Type of Analysis', ('Sales Analysis', 'Profit and Discount Analysis', 'Segment and Mode Analysis'))
 
     col1, col2 = st.columns(2)
 
@@ -52,3 +52,16 @@ else:
 
         data4 = db.get_avg_discount_per_subcategory_furniture()
         plot.plot_bar_chart(data4, y='Sub-Category', x='Avg Discount', title='Average Discount per sub-category')
+
+    if analysis_option == 'Segment and Mode Analysis':
+        data = db.get_segment_highest_avg_quantity_sold()
+        plot.plot_bar_chart(data, x = 'Segment', y='Avg Quantity', title='Avg Quantity Sold per Segment')
+
+        data2 = db.get_top_5_common_ship_modes()
+        plot.plot_pie_chart(data2, names='Ship Mode', values='Count', title='Common Shipping Modes')
+
+        data3 = db.get_segment_lowest_avg_discount()
+        plot.plot_bar_chart(data3, x='Segment', y='Avg Discount', title='Average Discounts Across Segments')
+
+        data4 = db.get_avg_sales_per_quantity_per_segment()
+        plot.plot_pie_chart(data4, names='Segment', values='Sales', title='Average Sales Per Quantity')
