@@ -1,5 +1,12 @@
 # MarketMage: Supermarket Sales Analysis App
 
+[Watch the video](https://youtu.be/x7um8W4SjlE)
+
+<p align="center">
+  <img src="Media/Demo_Video.webm">
+</p>
+
+
 ## Overview
 MarketMage is a Python-based project that brings your supermarket sales data to life through interactive visualizations and insightful analysis. With a user-friendly interface, it allows you to explore and understand sales trends, profit margins, and regional patterns across different store locations in the US.
 
