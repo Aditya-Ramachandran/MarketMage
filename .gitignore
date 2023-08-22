@@ -1,0 +1,28 @@
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Jupyter workspace configuration files
+.jupyter/
+
+# Jupyter notebook metadata
+*.ipynb-meta
+
+# Python bytecode files
+__pycache__/
+
+# Python virtual environment
+venv/
+
+# Environment variables file (if used)
+.env
+
+# Compiled Python files
+*.pyc
+*.pyo
+
+# Logs
+*.log
+
+
+QueriesList.docx
+Dataset_Upload.ipynb
