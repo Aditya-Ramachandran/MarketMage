@@ -9,14 +9,15 @@ plot = Plot()
 
 st.set_page_config(page_title='MarketMage',layout='wide')
 
-st.title('MarketMage')
-st.markdown("_Unveiling Market Insights Through Data Magic_")
-st.markdown('---')
 
 st.sidebar.title('Navigator')
 user_option = st.sidebar.selectbox('Choose One', ('About', 'Analytics'))
 
 if user_option == 'About':
+
+    st.title('MarketMage')
+    st.markdown("_Unveiling Market Insights Through Data Magic_")
+    st.markdown('---')
 
     st.header('About')
     st.write('Meet MarketMage: Your personal supermarket sales analyzer. This mini project employs Python and SQL to offer a real-time snapshot of sales trends, profit margins, and regional patterns across a variety of store locations. The app\'s intuitive interface transforms raw data into actionable insights, making it a valuable tool for swift decision-making. Dive into the world of business analysis with MarketMage, where data-driven insights are just a click away.')
@@ -36,6 +37,11 @@ else:
     col1, col2 = st.columns(2)
 
     if analysis_option == 'Sales Analysis':
+
+        st.header('Sales Analysis')
+        st.write('Uncover the heart of your supermarket data. Dive into detailed queries that illuminate sales trends, region-wise patterns, and category-wise performance. Explore the dynamic world of supermarket transactions and gain insights that can drive better decision-making.')
+        st.markdown('---')
+
         data = db.get_ship_mode_avg_sales()
         plot.plot_pie_chart(data, names='Shipment', values='Avg Sales', title='Pie Chart of Ship Mode and Avg Sales')
         
@@ -53,6 +59,11 @@ else:
     
 
     if analysis_option == 'Profit and Discount Analysis':
+
+        st.header('Profit and Disacount Analysis')
+        st.write('Peek behind the numbers and understand your profits and discounts better. This section breaks down the profitability of categories, sub-categories, and regions, giving you a comprehensive view of where your business excels and opportunities for improvement.')
+        st.markdown('---')
+
         data = db.get_avg_discount_per_segment()
         plot.plot_bar_chart(data, x='Segment', y='Average Discount', title='Average Discount Per Segment')
 
@@ -66,6 +77,11 @@ else:
         plot.plot_bar_chart(data4, y='Sub-Category', x='Avg Discount', title='Average Discount per sub-category')
 
     if analysis_option == 'Segment and Mode Analysis':
+
+        st.header('Segment and Mode Analysis')
+        st.write(' Learn how different segments and shipping modes impact your sales. This section delves into the behavior of various customer segments and shipping methods, providing a glimpse into what drives your revenue and how customers interact with your products.')
+        st.markdown('---')
+
         data = db.get_segment_highest_avg_quantity_sold()
         plot.plot_bar_chart(data, x = 'Segment', y='Avg Quantity', title='Avg Quantity Sold per Segment')
 
