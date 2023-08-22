@@ -1,9 +1,8 @@
 # MarketMage: Supermarket Sales Analysis App
 
-[Watch the video](https://youtu.be/x7um8W4SjlE)
 
 <p align="center">
-  <img src="Media/Demo_Video.webm">
+  <img src="Media/Demo_Video.gif">
 </p>
 
 
