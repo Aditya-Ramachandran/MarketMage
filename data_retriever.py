@@ -25,7 +25,7 @@ class DB:
         data = self.mycursor.fetchall()
         data = pd.DataFrame(data)
         data.rename(columns={0:'Shipment',1:'Avg Sales'}, inplace=True)
-        st.dataframe(data)
+        return data
     
     def get_category_subcategory_profit(self):
         self.mycursor.execute("USE store")
@@ -38,20 +38,20 @@ class DB:
         data = self.mycursor.fetchall()
         data = pd.DataFrame(data)
         data.rename(columns={0:'Category', 1:'Sub-Category', 2:'Profit'}, inplace=True)
-        st.dataframe(data)
+        return data
     
     def get_city_state_total_sales(self):
         self.mycursor.execute("USE store")
         self.mycursor.execute("""
-            SELECT City, State, ROUND(SUM(Sales),2) 
+            SELECT State, ROUND(SUM(Sales),2) 
             FROM store_data
-            GROUP BY City, State
-            ORDER BY SUM(Sales) DESC;
+            GROUP BY State
+            ORDER BY SUM(Sales) ASC;
         """)
         data = self.mycursor.fetchall()
         data = pd.DataFrame(data)
-        data.rename(columns={0:'City', 1:'State', 2:'Total Sales'},inplace=True)
-        st.dataframe(data)
+        data.rename(columns={0:'State', 1:'Total Sales'},inplace=True)
+        return data
     
     def get_region_category_avg_sales(self):
         self.mycursor.execute("USE store")
@@ -64,7 +64,7 @@ class DB:
         data = self.mycursor.fetchall()
         data = pd.DataFrame(data)
         data = data.rename(columns={0:'Region', 1:'Category', 2:'Avg Sales'})
-        st.dataframe(data)
+        return data
     
     def get_avg_sales_per_quantity_segment(self):
         self.mycursor.execute("USE store")
@@ -76,4 +76,4 @@ class DB:
         data = self.mycursor.fetchall()
         data = pd.DataFrame(data)
         data = data.rename(columns={0:'Segment', 1:'Avg Sales'})
-        st.dataframe(data)
+        return data
