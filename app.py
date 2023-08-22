@@ -38,3 +38,17 @@ else:
 
         data5 = db.get_avg_sales_per_quantity_segment()
         plot.plot_bar_chart(data5, x='Segment', y='Avg Sales', title='Average Sales Per Quantity')
+    
+
+    if analysis_option == 'Profit and Discount Analysis':
+        data = db.get_avg_discount_per_segment()
+        plot.plot_bar_chart(data, x='Segment', y='Average Discount', title='Average Discount Per Segment')
+
+        data2 = db.get_state_total_profit()
+        plot.plot_bar_chart(data2, y='State', x='Total Profit', title='Profit per State')
+
+        data3 = db.get_profit_margin_per_subcategory()
+        plot.plot_bar_chart(data3, y='Sub-Category', x='Profit Margin', title='Profit Margin per sub-category')
+
+        data4 = db.get_avg_discount_per_subcategory_furniture()
+        plot.plot_bar_chart(data4, y='Sub-Category', x='Avg Discount', title='Average Discount per sub-category')

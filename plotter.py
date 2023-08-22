@@ -1,14 +1,15 @@
 import plotly.express as px
 import streamlit as st
+import random 
 
-color_scale = px.colors.qualitative.Vivid
-
+color_scale = ["aliceblue", "cadetblue", "rosybrown", "darkseagreen", "lightsteelblue", "lightslategray", "goldenrod"]
 class Plot:
     def __init__(self) -> None:
          pass
     
     def plot_bar_chart(self, dataframe, x, y, title=None):
-        fig = px.bar(dataframe, x = x, y=y, title=title, color_discrete_sequence=color_scale)
+        color = random.shuffle(color_scale)
+        fig = px.bar(dataframe, x = x, y=y, title=title,color_discrete_sequence=color_scale)
         st.plotly_chart(fig, use_container_width=True)
     
     def plot_pie_chart(self, dataframe, names, values, title=None):

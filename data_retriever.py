@@ -77,3 +77,71 @@ class DB:
         data = pd.DataFrame(data)
         data = data.rename(columns={0:'Segment', 1:'Avg Sales'})
         return data
+    
+    def get_avg_discount_per_segment(self):
+        self.mycursor.execute("USE store")
+        self.mycursor.execute("""
+            SELECT Segment, ROUND(AVG(Discount),2)
+            FROM store_data
+            GROUP BY Segment
+            ORDER BY AVG(Discount) DESC;
+        """)
+        data = self.mycursor.fetchall()
+        data = pd.DataFrame(data)
+        data = data.rename(columns={0:'Segment', 1:"Average Discount"})
+        return data
+    
+    def get_state_total_profit(self):
+        self.mycursor.execute("USE store")
+        self.mycursor.execute("""
+            SELECT State, SUM(Profit)
+            FROM store_data
+            GROUP BY State
+            ORDER BY SUM(Profit) ASC;
+        """)
+        data = self.mycursor.fetchall()
+        data = pd.DataFrame(data)
+        data =data.rename(columns={0:'State', 1:'Total Profit'})
+        return data
+    
+    def get_profit_margin_per_subcategory(self):
+        self.mycursor.execute("USE store")
+        self.mycursor.execute("""
+            SELECT `Sub-Category`, SUM(Profit)/SUM(Sales)
+            FROM store_data
+            GROUP BY `Sub-Category`
+            ORDER BY SUM(Profit)/SUM(Sales) DESC;
+        """)
+        data = self.mycursor.fetchall()
+        data = pd.DataFrame(data)
+        data = data.rename(columns={0:'Sub-Category', 1:'Profit Margin'})
+        return data
+    
+    def get_avg_discount_per_subcategory_furniture(self):
+        self.mycursor.execute('USE store')
+        self.mycursor.execute("""
+            SELECT `Sub-Category`, AVG(Discount)
+            FROM store_data
+            WHERE Category = 'Furniture'
+            GROUP BY `Sub-Category`
+            ORDER BY AVG(Discount);
+        """)
+        data = self.mycursor.fetchall()
+        data = pd.DataFrame(data)
+        data = data.rename(columns={0:'Sub-Category', 1:'Avg Discount'})
+        return data
+    
+    def get_subcategory_highest_avg_discount(self):
+        self.mycursor.execute("USE store")
+        self.mycursor.execute("""
+            SELECT `Sub-Category`, AVG(Discount)
+            FROM store_data
+            GROUP BY `Sub-Category`
+            ORDER BY AVG(Discount) DESC;
+        """)
+        data = self.mycursor.fetchall()
+        data = pd.DataFrame(data)
+        data = data.rename(columns={0:'Sub-Category', 1:'Avg Discount'})
+        return data
+    
+    
