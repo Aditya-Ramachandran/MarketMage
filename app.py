@@ -60,7 +60,7 @@ else:
 
     if analysis_option == 'Profit and Discount Analysis':
 
-        st.header('Profit and Disacount Analysis')
+        st.header('Profit and Discount Analysis')
         st.write('Peek behind the numbers and understand your profits and discounts better. This section breaks down the profitability of categories, sub-categories, and regions, giving you a comprehensive view of where your business excels and opportunities for improvement.')
         st.markdown('---')
 

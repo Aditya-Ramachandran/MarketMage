@@ -1,14 +1,19 @@
 import mysql.connector
 import pandas as pd
-import streamlit as st
+import configparser
+
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+print(config['database']['password'])
 
 class DB:
     def __init__(self):
         try:
             self.conn = mysql.connector.connect(
-                host='127.0.0.1',
-                user="root",
-                password=""
+                host=config['database']['host'],
+                user=config['database']['user'],
+                password= ""
             )
             self.mycursor = self.conn.cursor()
             print('Connection Established!')
